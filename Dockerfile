@@ -20,4 +20,4 @@ WORKDIR /tests
 ENV LOG_FILE_PATH /tests/syscalls-tests.log
 COPY --from=tools /opt/ltp /opt/ltp
 COPY src /tests/src
-CMD ["bash", "-c", "/opt/ltp/runltp -f syscalls -Q -q -l $LOG_FILE_PATH && node src/index.js"]
+CMD ["bash", "-c", "(/opt/ltp/runltp -f syscalls -Q -q -l $LOG_FILE_PATH || exit 0) && node src/index.js"]
